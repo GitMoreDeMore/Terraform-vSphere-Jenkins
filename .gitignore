@@ -1,0 +1,11 @@
+.aws/credentials
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform.lock.hcl
+.vscode/bookmarks.json
+.vscode/settings.json
+.vscode
+.vscode/bookmarks.json
+.vscode/settings.json
