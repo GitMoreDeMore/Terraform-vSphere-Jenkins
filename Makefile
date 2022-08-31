@@ -22,7 +22,7 @@ init:
 	@echo "==> Initializing Terraform..."
 	terraform --version
 	cd infrastructure/$(COMPONENT)
-	if [[ $(shell pwd) == *"vsphere"* ]]; then cp -v ../../vsphere.auto.tfvars . ; fi
+	if [[ $(COMPONENT) == *"vsphere"* ]]; then cp -v ../../vsphere.auto.tfvars . ; fi
 	terraform init
 
 output:
