@@ -1,0 +1,68 @@
+pipeline {
+  agent any
+  
+  parameters {
+    string(name: "COMPONENTS",defaultValue: "", description: "The component directory. Examples: 'vsphere-distributed-port-group', 'vsphere-distributed-switch'.")
+  }
+  
+  triggers {
+    cron('@daily')
+    pollSCM('H/2 * * * *')
+  }
+  
+    stages {
+
+      stage('Git Clone') {
+        steps {
+        git branch: 'main', url: 'https://github.com/GitMoreDeMore/Terraform-vSphere-Jenkins.git'
+        }
+      }
+
+      stage('Setup') {
+        steps {
+          script {
+            COMPONENTS.split().each { COMPONENT ->
+						  withCredentials([
+                  file(credentialsId: 'vsphere-credentials', variable: 'VSPHERE_CREDENTIALS')
+						  ]) {
+							  withEnv([
+								  "COMPONENT=${COMPONENT}"
+							  ]) {
+
+								  stage (COMPONENT+' Init') {
+									  sh '''
+                      cp -v ${VSPHERE_CREDENTIALS} .
+
+                      make init COMPONENT="${COMPONENT}"
+                    '''
+								  }
+
+								  stage (COMPONENT+' Plan') {
+								    sh '''make plan COMPONENT="${COMPONENT}"'''
+								  }
+
+								  if (AUTO_APPROVE == 'false') {
+									  def userInput
+									  timeout(time: 15, unit: "MINUTES") {
+										  userInput = input(
+											  id: 'userInput', message: "Carefully review the Terraform plan above for component '${COMPONENT}'.\n\nWARNING: Clicking the 'Proceed' button will perform the changes shown above.\n\n"
+										  )
+									  }
+								  }
+
+								  stage (COMPONENT+' Apply') {
+									  sh '''make apply COMPONENT="${COMPONENT}" FLAGS="-auto-approve ${FLAGS}"'''
+								  }
+							  }
+						  }
+					  }
+          }
+        }
+      }
+    }
+  post {
+    always {
+      cleanWs()
+    }
+  }
+}

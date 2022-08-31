@@ -1,6 +1,6 @@
 apply:
 	@echo "==> Applying Terraform..."
-	cd deployments/$(ENVIRONMENT)/$(GROUP)/$(SUBGROUP) && terraform apply $(FLAGS)
+	cd infrastructure/$(COMPONENT) && terraform apply $(FLAGS)
 
 delete-lock-files:
 	@echo "==> Deleting Terraform lock files..."
@@ -8,7 +8,7 @@ delete-lock-files:
 
 destroy:
 	@echo "==> Destroying Terraform..."
-	cd deployments/$(ENVIRONMENT)/$(GROUP)/$(SUBGROUP) && terraform destroy $(FLAGS)
+	cd infrastructure/$(COMPONENT) && terraform destroy $(FLAGS)
 
 fmt:
 	@echo "==> Formatting Terraform files..."
@@ -16,21 +16,21 @@ fmt:
 
 force-unlock:
 	@echo "==> Unlocking Terraform..."
-	cd deployments/$(ENVIRONMENT)/$(GROUP)/$(SUBGROUP) && terraform force-unlock $(FLAGS)
+	cd infrastructure/$(COMPONENT) && terraform force-unlock $(FLAGS)
 
 init:
 	@echo "==> Initializing Terraform..."
 	terraform --version
-	cd deployments/$(ENVIRONMENT)/$(GROUP)/$(SUBGROUP) && terraform init
+	cd infrastructure/$(COMPONENT) && terraform init
 
 output:
 	@echo "==> Outputting Terraform..."
-	cd deployments/$(ENVIRONMENT)/$(GROUP)/$(SUBGROUP) && terraform output $(FLAGS)
+	cd infrastructure/$(COMPONENT) && terraform output $(FLAGS)
 
 plan:
 	@echo "==> Planning Terraform..."
-	cd deployments/$(ENVIRONMENT)/$(GROUP)/$(SUBGROUP) && terraform plan $(FLAGS)
+	cd infrastructure/$(COMPONENT) && terraform plan $(FLAGS)
 
 validate:
 	@echo "==> Validating Terraform..."
-	cd deployments/$(ENVIRONMENT)/$(GROUP)/$(SUBGROUP) && terraform validate
+	cd infrastructure/$(COMPONENT) && terraform validate
