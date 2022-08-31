@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 apply:
 	@echo "==> Applying Terraform..."
 	cd infrastructure/$(COMPONENT) && terraform apply $(FLAGS)
@@ -21,7 +22,7 @@ force-unlock:
 init:
 	@echo "==> Initializing Terraform..."
 	terraform --version
-	cd infrastructure/$(COMPONENT) && if [ "$(COMPONENT)" == *"vsphere"* ]; then cp -v ../../vsphere.auto.tfvars . ; fi && terraform init
+	cd infrastructure/$(COMPONENT) && if [ $(COMPONENT) == *"vsphere"* ]; then cp -v ../../vsphere.auto.tfvars . ; fi && terraform init
 
 output:
 	@echo "==> Outputting Terraform..."
