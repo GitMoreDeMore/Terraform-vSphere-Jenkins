@@ -3,6 +3,7 @@ pipeline {
   
   parameters {
     string(name: "COMPONENTS",defaultValue: "", description: "The component directory. Examples: 'vsphere-distributed-port-group', 'vsphere-distributed-switch'.")
+    booleanParam(name: "AUTO_APPROVE",defaultValue: 'false', description: "Automatically approve Terraform apply. WARNING: This should remain unchecked in most cases to review changes before applying them.")
   }
   
   triggers {
