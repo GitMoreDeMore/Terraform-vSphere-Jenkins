@@ -31,7 +31,7 @@ pipeline {
 
 								  stage (COMPONENT+' Init') {
 									  sh '''
-                      cp -v ${VSPHERE_CREDENTIALS} .
+                      if [[ $(COMPONENT) == *"vsphere"* ]] ; then cp -v ${VSPHERE_CREDENTIALS} ./infrastructure/$(COMPONENT) ; fi
 
                       make init COMPONENT="${COMPONENT}"
                     '''
