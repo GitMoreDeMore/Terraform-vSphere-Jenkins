@@ -1,0 +1,13 @@
+# Forward DNS lookup
+zone "miked.lab" IN {
+        type slave;
+        masters { 192.168.1.121; };
+        file "/var/named/forward.miked.lab";
+};
+
+# Reverse DNS lookup
+zone    "1.168.192.in-addr.arpa" IN {
+        type slave;
+        masters { 192.168.1.121; };
+        file "/var/named/reverse.miked.lab";
+};

@@ -1,0 +1,14 @@
+$ORIGIN miked.lab.
+$TTL 86400
+@   IN  SOA mikedns01.miked.lab. admin.miked.lab. (
+        2021062301   ; serial
+        3600         ; refresh
+        1800         ; retry
+        604800       ; expire
+        86400 )      ; minimum TTL
+
+        IN  NS  mikedns01
+        IN  NS  mikedns02
+
+mikedns01       IN A    192.168.1.121
+mikedns02       IN A    192.168.1.122

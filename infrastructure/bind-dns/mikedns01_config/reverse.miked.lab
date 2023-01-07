@@ -1,0 +1,14 @@
+$ORIGIN 1.168.192.in-addr.arpa.
+$TTL    86400
+@   IN  SOA  mikedns01.miked.lab. admin.miked.lab. (
+        2021062302  ; serial
+        3600        ; refresh
+        1800        ; retry
+        604800      ; expire
+        86400 )     ; minimum TTL
+
+         IN NS   mikedns01.
+         IN NS   mikedns02.
+
+121      IN PTR  mikedns01.miked.lab.
+122      IN PTR  mikedns02.miked.lab.

@@ -9,3 +9,6 @@
 .vscode
 .vscode/bookmarks.json
 .vscode/settings.json
+
+#Credentials
+*.auto.tfvars

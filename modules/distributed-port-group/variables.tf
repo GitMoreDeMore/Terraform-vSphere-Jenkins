@@ -2,15 +2,28 @@ variable "name" {}
 
 variable "datacenter" {}
 
-variable "vds" {}
+variable "vds" {
+  default = ""
+}
+
+variable "vds_map" {
+  type = map(any)
+  default = {
+    "home" = "home-vds"
+  }
+}
 
 variable "vlan_id" {
   default = null
 }
 
-variable "active_uplinks" {}
+variable "active_uplinks" {
+  default = null
+}
 
-variable "standby_uplinks" {}
+variable "standby_uplinks" {
+  default = null
+}
 
 variable "type" {
   default = "earlyBinding"

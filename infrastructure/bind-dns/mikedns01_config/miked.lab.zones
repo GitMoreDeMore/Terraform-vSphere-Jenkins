@@ -1,0 +1,17 @@
+# Forward DNS lookup
+zone "miked.lab" IN {
+        type master;
+        file "/var/named/forward.miked.lab";
+        update-policy { grant terraform-key zonesub any; };
+        allow-transfer {192.168.1.122; };
+        also-notify {192.168.1.122; };
+};
+
+# Reverse DNS lookup
+zone    "1.168.192.in-addr.arpa" IN {
+        type master;
+        file "/var/named/reverse.miked.lab";
+        update-policy { grant terraform-key zonesub any; };
+        allow-transfer {192.168.1.122; };
+        also-notify {192.168.1.122; };
+};
