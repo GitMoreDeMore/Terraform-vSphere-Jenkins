@@ -9,7 +9,7 @@ variable "vsphere_password" {
 variable "key_secret" {}
 
 variable "client_code" {
-  default = "MD"
+  default = "md"
 }
 
 variable "client_time_zone" {
@@ -21,11 +21,11 @@ variable "role" {
 }
 
 variable "datastore" {
-  default = "vSAN-Cluster"
+  default = null
 }
 
 variable "datastore_cluster" {
-  default = null
+  default = "h4_nvme"
 }
 
 variable "run_once" {

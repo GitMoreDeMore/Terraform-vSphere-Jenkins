@@ -1,4 +1,4 @@
-module "mikedns02" {
+module "mikewinsrv01" {
   depends_on = [module.vm-tag-client-code]
   source     = "../../modules/virtual-machine"
 
@@ -6,19 +6,16 @@ module "mikedns02" {
     vsphere = vsphere.home
   }
 
-  guest_name   = "mikedns02"
+  guest_name   = "mikewinsrv01"
   role         = "dc"
-  os           = "linux"
+  os           = "windows2022"
   guest_vcpu   = "2"
   guest_memory = "4"
   guest_disks = [
-    { size = 1 },
-    { size = 16 },
     { size = 100 },
-    { size = 30 },
   ]
   port_group           = "management"
-  guest_ipv4_ip        = "192.168.1.122"
+  guest_ipv4_ip        = "192.168.1.63"
   guest_ipv4_netmask   = "24"
   guest_ipv4_gateway   = "192.168.1.1"
   datacenter           = "Home-DC"

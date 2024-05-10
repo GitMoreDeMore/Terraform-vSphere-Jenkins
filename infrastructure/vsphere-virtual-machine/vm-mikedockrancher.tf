@@ -1,28 +1,26 @@
-module "mikedns02" {
-  depends_on = [module.vm-tag-client-code]
-  source     = "../../modules/virtual-machine"
+module "mikedockrancher" {
+  source = "../../modules/virtual-machine"
 
   providers = {
     vsphere = vsphere.home
   }
 
-  guest_name   = "mikedns02"
-  role         = "dc"
+  guest_name   = "mikedockrancher"
+  role         = "misc"
   os           = "linux"
-  guest_vcpu   = "2"
-  guest_memory = "4"
+  guest_vcpu   = "4"
+  guest_memory = "8"
   guest_disks = [
-    { size = 1 },
     { size = 16 },
-    { size = 100 },
-    { size = 30 },
+    { size = 16 },
+    { size = 16 }
   ]
   port_group           = "management"
-  guest_ipv4_ip        = "192.168.1.122"
+  guest_ipv4_ip        = "192.168.1.143"
   guest_ipv4_netmask   = "24"
   guest_ipv4_gateway   = "192.168.1.1"
-  datacenter           = "Home-DC"
-  compute_cluster      = "Home"
+  datacenter           = "home-dc"
+  compute_cluster      = "home"
   datastore            = var.datastore
   datastore_cluster    = var.datastore_cluster
   client_code          = var.client_code

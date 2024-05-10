@@ -39,14 +39,44 @@ variable "records" {
     mikevct01 = {
       address = "192.168.1.159"
     }
+    mikevct02 = {
+      address = "192.168.1.10"
+    }
     mikehost01 = {
-      address = "192.168.1.110"
+      address = "192.168.1.5"
     }
     mikehost02 = {
       address = "192.168.1.116"
     }
+    mikehost04 = {
+      address = "192.168.1.155"
+    }
+    mikehoststorage = {
+      address = "192.168.1.114"
+    }
     mikewitness = {
       address = "192.168.1.117"
+    }
+    mikedock01 = {
+      address = "192.168.1.142"
+    }
+    mikedock02 = {
+      address = "192.168.1.143"
+    }
+    k3s-rancher = {
+      address = "192.168.1.170"
+    }
+    k3s-node-1 = {
+      address = "192.168.1.171"
+    }
+    k3s-node-2 = {
+      address = "192.168.1.172"
+    }
+    k3s-node-3 = {
+      address = "192.168.1.173"
+    }
+    rancher = {
+      address = "192.168.1.50"
     }
   }
 }

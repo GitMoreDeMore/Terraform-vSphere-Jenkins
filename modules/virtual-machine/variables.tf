@@ -23,9 +23,10 @@ variable "role" {
 variable "guest_template_codes" {
   type = map(any)
   default = {
-    "linux"      = "rocky8-template"
-    "rocky"      = "rocky8-template"
-    "centos7"      = "centos7-template"
+    "linux"       = "rocky8-template"
+    "rocky"       = "rocky8-template"
+    "k3s"         = "rocky8-k3s-template"
+    "centos7"     = "centos7-template"
     "windows"     = "windows2016-template"
     "windows2022" = "windows2022-template"
   }
@@ -54,7 +55,7 @@ variable "guest_ipv4_gateway" {}
 variable "guest_dns_servers" {
   type = map(any)
   default = {
-    "Home-DC" = ["192.168.1.201", "192.168.1.1"]
+    "home-dc" = ["192.168.1.122", "192.168.1.121"]
   }
 }
 

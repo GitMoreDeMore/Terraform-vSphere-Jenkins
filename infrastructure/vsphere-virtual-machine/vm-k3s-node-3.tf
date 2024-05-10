@@ -1,25 +1,24 @@
-module "testdc01" {
-  depends_on = [module.vm-tag-client-code]
-  source     = "../../modules/virtual-machine"
+module "k3s-node-3" {
+  source = "../../modules/virtual-machine"
 
   providers = {
     vsphere = vsphere.home
   }
 
-  guest_name   = "testdc01"
-  role         = "dc"
-  os           = "windows2022"
+  guest_name   = "k3s-node-3"
+  role         = "misc"
+  os           = "k3s"
   guest_vcpu   = "4"
   guest_memory = "8"
   guest_disks = [
-    { size = 100 },
+    { size = 32 }
   ]
   port_group           = "management"
-  guest_ipv4_ip        = "192.168.1.112"
+  guest_ipv4_ip        = "192.168.1.173"
   guest_ipv4_netmask   = "24"
   guest_ipv4_gateway   = "192.168.1.1"
-  datacenter           = "Home-DC"
-  compute_cluster      = "Home"
+  datacenter           = "home-dc"
+  compute_cluster      = "home"
   datastore            = var.datastore
   datastore_cluster    = var.datastore_cluster
   client_code          = var.client_code

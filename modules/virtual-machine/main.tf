@@ -8,7 +8,7 @@ resource "vsphere_virtual_machine" "vm" {
   num_cpus                = var.guest_vcpu
   memory                  = var.guest_memory * 1024
   firmware                = var.os == "windows2022" || var.os == "linux" ? "efi" : data.vsphere_virtual_machine.guest_template.firmware #pending fix
-  efi_secure_boot_enabled = var.os == "windows2022" ? true : null                                                  #pending fix
+  efi_secure_boot_enabled = var.os == "windows2022" ? true : null                                                                       #pending fix
   guest_id                = data.vsphere_virtual_machine.guest_template.guest_id
   scsi_type               = data.vsphere_virtual_machine.guest_template.scsi_type
   scsi_controller_count   = 1
@@ -97,5 +97,6 @@ resource "vsphere_virtual_machine" "vm" {
       clone.0.customize.0.windows_options.0.admin_password,
       clone.0.customize.0.windows_options.0.domain_admin_password,
     ]
+    prevent_destroy = true
   }
 }

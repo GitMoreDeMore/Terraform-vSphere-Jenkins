@@ -1,5 +1,5 @@
 resource "dns_a_record_set" "arecord" {
-  for_each  = var.records
+  for_each = var.records
 
   zone      = var.zone
   name      = each.key
@@ -8,7 +8,7 @@ resource "dns_a_record_set" "arecord" {
 }
 
 resource "dns_ptr_record" "ptr" {
-  for_each  = var.records
+  for_each = var.records
 
   zone = var.reversezone
   name = split(".", each.value.address)[3]

@@ -12,10 +12,10 @@ module "mikedns01" {
   guest_vcpu   = "2"
   guest_memory = "4"
   guest_disks = [
-    {size      = 1},
-    {size      = 16},
-    {size      = 100},
-    {size      = 30},
+    { size = 1 },
+    { size = 16 },
+    { size = 100 },
+    { size = 30 },
   ]
   port_group           = "management"
   guest_ipv4_ip        = "192.168.1.121"
